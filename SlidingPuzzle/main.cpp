@@ -4,6 +4,14 @@
 
 using namespace std;
 
+
+
+void MouseButtonPress(); // Ill write what to do in comments and who will implement this function
+int pos_to_index(int i, int j);
+void index_to_pos(int index, int &i, int &j);
+bool is_valid_move(int i, int j, int free_i, int free_j, int w, int h);
+void mouse_on_grid_pos(int &i, int &j, float cw, float ch);
+void swap_position(int grid[], int i, int j);
 //using namespace std;
 
 void DrawCenteredText(const char* cstr, int x, int y, int font_size, Color col) {
@@ -32,7 +40,7 @@ int main(void)
     {
         BeginDrawing();
         ClearBackground(RAYWHITE);
-        if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
             cout << "DAMN";
         }
 
