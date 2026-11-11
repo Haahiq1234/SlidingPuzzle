@@ -1,12 +1,37 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\FAST\\semester_1\\Programming_Fundamentals\\Project\\SlidingPuzzle\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{75EB8B67-05C0-40EA-8595-0FC020BA24C0}|SlidingPuzzle\\SlidingPuzzle.vcxproj|D:\\FAST\\semester_1\\Programming_Fundamentals\\Project\\SlidingPuzzle\\SlidingPuzzle\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{75EB8B67-05C0-40EA-8595-0FC020BA24C0}|SlidingPuzzle\\SlidingPuzzle.vcxproj|solutionrelative:SlidingPuzzle\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.cpp",
+              "DocumentMoniker": "D:\\FAST\\semester_1\\Programming_Fundamentals\\Project\\SlidingPuzzle\\SlidingPuzzle\\main.cpp",
+              "RelativeDocumentMoniker": "SlidingPuzzle\\main.cpp",
+              "ToolTip": "D:\\FAST\\semester_1\\Programming_Fundamentals\\Project\\SlidingPuzzle\\SlidingPuzzle\\main.cpp",
+              "RelativeToolTip": "SlidingPuzzle\\main.cpp",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABYAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-11-11T04:19:01.783Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
