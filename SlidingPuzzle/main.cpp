@@ -143,3 +143,23 @@ int SlidingPuzzle::index(int i, int j)
     int result = i + j * width;
     return result;
 }
+void SlidingPuzzle::screen_space_to_grid(int x, int y, int& i, int& j)
+{
+    i = x / tile_width;
+    j = y / tile_height;
+}
+
+void SlidingPuzzle::get_mouse_pos(int& i, int& j)
+{
+    int x, y;
+    Vector2 pos = GetMousePosition();
+    x = pos.x;
+    y = pos.y;
+    screen_space_to_grid(x, y, i, j);
+}
+
+void SlidingPuzzle::pos(int index, int& i, int& j)
+{
+    i = ((index - 1) / 3) + 1;
+    j = ((index - 1) % 3) + 1;
+}
