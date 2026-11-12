@@ -94,11 +94,11 @@ void SlidingPuzzle::Render()
 {
     for (int i = 0; i < width; i++) {
         for (int j = 0; j < height; j++) {
-            int index = i + j * width;
-            int val = grid[index];
+            int idx = index(i, j);
+            int val = grid[idx];
             if (val == 0) continue;
-            int x = i * tile_width;
-            int y = j * tile_height;
+            int x, y;
+            grid_to_screen_space(i, j, x, y);
             DrawRectangle(x + padding, y + padding, tile_width - padding * 2, tile_height - padding * 2, GREEN);
             //DrawCenteredText(TextFormat("(%i, %i) -> %i + %i * %i -> %i", i, j, i, j, width, index), x + cell_width / 2, y + cell_height / 2, 20, BLACK);
             //DrawCenteredText(TextFormat("%i -> (%i %% %i -> %i, %i / %i -> %i)", index, index, width, i, index, width, j), x + cell_width / 2, y + cell_height / 2, 20, BLACK);
@@ -114,4 +114,32 @@ void SlidingPuzzle::Destroy()
 
 void SlidingPuzzle::MouseButtonPress()
 {
+}
+
+void SlidingPuzzle::grid_to_screen_space(int i, int j, int& x, int& y)
+{
+    x = i * tile_width;
+    y = j * tile_height;
+}
+
+bool SlidingPuzzle::is_valid_move(int i, int j)
+{
+    if (i < 0 || i >= width || j < 0 || j >= height)
+    {
+        return false;
+    }
+
+    int distance_i = i - blank_i;
+    int distance_j = j - blank_j;
+
+    if (distance_i + distance_j == 1)
+    {
+        return true;
+    }
+}
+
+int SlidingPuzzle::index(int i, int j)
+{
+    int result = i + j * width;
+    return result;
 }
