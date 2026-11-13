@@ -163,3 +163,12 @@ void SlidingPuzzle::pos(int index, int& i, int& j)
     i = ((index - 1) / 3) + 1;
     j = ((index - 1) % 3) + 1;
 }
+//if value of grid at index = index+1 return true return false
+bool SlidingPuzzle::is_in_correct_place(int i, int j)
+{
+    int idx = index(i, j);
+    if (grid[idx] == idx + 1)
+        return true;
+    else
+        return false;
+}
