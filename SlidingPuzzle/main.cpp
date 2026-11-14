@@ -23,6 +23,7 @@ public:
 private:
     int window_width = -1, window_height = -1;
     int width = 3, height = 3;
+    int total_tiles = width * height;
     int blank_i = width - 1, blank_j = height - 1; // The position of the blank tile
     float tile_width = -1, tile_height = -1; // the width and height of a single tile
     int padding = 5;
@@ -171,6 +172,7 @@ void SlidingPuzzle::RenderTile(int x, int y, int value, bool is_correct)
     DrawCenteredText(TextFormat("%i", value), x + tile_width / 2, y + tile_height / 2, 40, BLACK);
 }
 
+
 void SlidingPuzzle::grid_to_screen_space(int i, int j, int& x, int& y)
 {
     x = i * tile_width;
@@ -226,6 +228,26 @@ bool SlidingPuzzle::is_in_correct_place(int i, int j)
         return true;
     else
         return false;
+}
+void SlidingPuzzle::CheckGameState()//checks each tile if it is in correct place if it is then ends the game other wise do not end.
+{
+    int count=0;
+    for (int i = 0;i < width;i++)
+    {
+        for (int j = 0;j < height;j++)
+        {
+            if (is_in_correct_place(i, j))
+            {
+                count++;
+            }
+        }
+    }
+    if (count == total_tiles - 1)
+    {
+        EndGame();
+    }
+
+
 }
 void SlidingPuzzle::move_tile(int i, int j)
 {
