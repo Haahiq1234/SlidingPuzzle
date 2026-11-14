@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <random>
+#include <cmath>
 
 using namespace std;
 
@@ -183,8 +184,8 @@ bool SlidingPuzzle::is_valid_move(int i, int j)
         return false;
     }
 
-    int distance_i = i - blank_i;
-    int distance_j = j - blank_j;
+    int distance_i = abs(i - blank_i);
+    int distance_j = abs(j - blank_j);
 
     if (distance_i + distance_j == 1)
     {
