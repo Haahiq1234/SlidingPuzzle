@@ -160,8 +160,8 @@ void SlidingPuzzle::get_mouse_pos(int& i, int& j)
 
 void SlidingPuzzle::pos(int index, int& i, int& j)
 {
-    i = index / 3;
-    j = index % 3;
+    i = index / width;
+    j = index % height;
 }
 //if value of grid at index = index+1 return true return false
 bool SlidingPuzzle::is_in_correct_place(int i, int j)
