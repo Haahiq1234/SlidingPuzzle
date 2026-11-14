@@ -260,3 +260,16 @@ void SlidingPuzzle::move_tile(int i, int j)
     blank_i = i;
     blank_j = j;
 }
+void SlidingPuzzle::HandleMousePress(int x, int y)
+{
+    int i, j;
+    screen_space_to_grid(x, y, i, j);
+    if (is_valid_move(i, j))
+        move_tile(i, j);
+}
+void SlidingPuzzle::EndGame()
+{
+    int x = index(blank_i, blank_j);
+    grid[x] = x + 1;
+    is_running = false;
+}
