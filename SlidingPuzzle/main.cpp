@@ -22,7 +22,7 @@ public:
 
 private:
     int window_width = -1, window_height = -1;
-    int width = 3, height = 3;
+    int width = 5, height = 5;
     int total_tiles = width * height;
     int blank_i = width - 1, blank_j = height - 1; // The position of the blank tile
     float tile_width = -1, tile_height = -1; // the width and height of a single tile
@@ -96,7 +96,9 @@ void SlidingPuzzle::Init(int w, int h)
 
 void SlidingPuzzle::Update()
 {
+    if (!is_running) return;
     HandleInput();
+    CheckGameState();
 }
 
 void SlidingPuzzle::Render()
@@ -111,6 +113,9 @@ void SlidingPuzzle::Render()
             RenderTile(x, y, val, is_in_correct_place(i, j));
         }
     }
+    if (!is_running) 
+        DrawCenteredText("PUZZLE FINISHED!", window_width/2, window_height/2, 60, BLACK);
+    
 }
 
 void SlidingPuzzle::Destroy()
@@ -125,6 +130,7 @@ void SlidingPuzzle::BeginGame()
     }
     grid[blank_i + blank_j * width] = 0;
     ShuffleTiles();
+    is_running = true;
 }
 
 void SlidingPuzzle::ShuffleTiles()
@@ -157,7 +163,7 @@ void SlidingPuzzle::HandleInput()
 {
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
         Vector2 mouse = GetMousePosition();
-        //HandleMousePress(mouse.x, mouse.y);
+        HandleMousePress(mouse.x, mouse.y);
     }
 }
 
@@ -189,10 +195,11 @@ bool SlidingPuzzle::is_valid_move(int i, int j)
     int distance_i = abs(i - blank_i);
     int distance_j = abs(j - blank_j);
 
-    if (distance_i + distance_j == 1)
+    if ((distance_i + distance_j) == 1)
     {
         return true;
     }
+    return false;
 }
 
 int SlidingPuzzle::index(int i, int j)

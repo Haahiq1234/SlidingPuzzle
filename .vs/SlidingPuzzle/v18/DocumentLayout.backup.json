@@ -1,16 +1,9 @@
 {
   "Version": 1,
-<<<<<<< Updated upstream
-  "WorkspaceRootPath": "E:\\FAST\\sem_1\\PF\\SlidingPuzzle\\",
+  "WorkspaceRootPath": "D:\\FAST\\semester_1\\Programming_Fundamentals\\Project\\SlidingPuzzle\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{75EB8B67-05C0-40EA-8595-0FC020BA24C0}|SlidingPuzzle\\SlidingPuzzle.vcxproj|E:\\FAST\\sem_1\\PF\\SlidingPuzzle\\SlidingPuzzle\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-=======
-  "WorkspaceRootPath": "C:\\Users\\HP\\Downloads\\FAST everything\\Assignment programs\\SlidingPuzzle\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{75EB8B67-05C0-40EA-8595-0FC020BA24C0}|SlidingPuzzle\\SlidingPuzzle.vcxproj|C:\\Users\\HP\\Downloads\\FAST everything\\Assignment programs\\SlidingPuzzle\\SlidingPuzzle\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
->>>>>>> Stashed changes
+      "AbsoluteMoniker": "D:0:0:{75EB8B67-05C0-40EA-8595-0FC020BA24C0}|SlidingPuzzle\\SlidingPuzzle.vcxproj|D:\\FAST\\semester_1\\Programming_Fundamentals\\Project\\SlidingPuzzle\\SlidingPuzzle\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{75EB8B67-05C0-40EA-8595-0FC020BA24C0}|SlidingPuzzle\\SlidingPuzzle.vcxproj|solutionrelative:SlidingPuzzle\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
@@ -21,34 +14,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "main.cpp",
-<<<<<<< Updated upstream
-              "DocumentMoniker": "E:\\FAST\\sem_1\\PF\\SlidingPuzzle\\SlidingPuzzle\\main.cpp",
+              "DocumentMoniker": "D:\\FAST\\semester_1\\Programming_Fundamentals\\Project\\SlidingPuzzle\\SlidingPuzzle\\main.cpp",
               "RelativeDocumentMoniker": "SlidingPuzzle\\main.cpp",
-              "ToolTip": "E:\\FAST\\sem_1\\PF\\SlidingPuzzle\\SlidingPuzzle\\main.cpp",
+              "ToolTip": "D:\\FAST\\semester_1\\Programming_Fundamentals\\Project\\SlidingPuzzle\\SlidingPuzzle\\main.cpp",
               "RelativeToolTip": "SlidingPuzzle\\main.cpp",
-              "ViewState": "AgIAAOQAAAAAAAAAAADwv+cAAACDAAAAAAAAAA==",
+              "ViewState": "AgIAACwAAAAAAAAAAAAmwEYAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-11-14T12:02:21.999Z",
-=======
-              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\FAST everything\\Assignment programs\\SlidingPuzzle\\SlidingPuzzle\\main.cpp",
-              "RelativeDocumentMoniker": "SlidingPuzzle\\main.cpp",
-              "ToolTip": "C:\\Users\\HP\\Downloads\\FAST everything\\Assignment programs\\SlidingPuzzle\\SlidingPuzzle\\main.cpp*",
-              "RelativeToolTip": "SlidingPuzzle\\main.cpp*",
-              "ViewState": "AgIAAOQAAAAAAAAAAAAAAPQAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-11-14T12:09:18.185Z",
->>>>>>> Stashed changes
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-14T13:03:50.678Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%3"
             }
           ]
         }
