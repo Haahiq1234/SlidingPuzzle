@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\FAST\\semester_1\\Programming_Fundamentals\\SemProject\\SlidingPuzzle\\",
+  "WorkspaceRootPath": "C:\\Users\\HP\\Downloads\\FAST everything\\Assignment programs\\SlidingPuzzle\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{75EB8B67-05C0-40EA-8595-0FC020BA24C0}|SlidingPuzzle\\SlidingPuzzle.vcxproj|D:\\FAST\\semester_1\\Programming_Fundamentals\\SemProject\\SlidingPuzzle\\SlidingPuzzle\\src\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{75EB8B67-05C0-40EA-8595-0FC020BA24C0}|SlidingPuzzle\\SlidingPuzzle.vcxproj|C:\\Users\\HP\\Downloads\\FAST everything\\Assignment programs\\SlidingPuzzle\\SlidingPuzzle\\src\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{75EB8B67-05C0-40EA-8595-0FC020BA24C0}|SlidingPuzzle\\SlidingPuzzle.vcxproj|solutionrelative:SlidingPuzzle\\src\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
@@ -20,15 +20,14 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "main.cpp",
-              "DocumentMoniker": "D:\\FAST\\semester_1\\Programming_Fundamentals\\SemProject\\SlidingPuzzle\\SlidingPuzzle\\src\\main.cpp",
+              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\FAST everything\\Assignment programs\\SlidingPuzzle\\SlidingPuzzle\\src\\main.cpp",
               "RelativeDocumentMoniker": "SlidingPuzzle\\src\\main.cpp",
-              "ToolTip": "D:\\FAST\\semester_1\\Programming_Fundamentals\\SemProject\\SlidingPuzzle\\SlidingPuzzle\\src\\main.cpp",
+              "ToolTip": "C:\\Users\\HP\\Downloads\\FAST everything\\Assignment programs\\SlidingPuzzle\\SlidingPuzzle\\src\\main.cpp",
               "RelativeToolTip": "SlidingPuzzle\\src\\main.cpp",
-              "ViewState": "AgIAADMAAAAAAAAAAAAmwEMAAAA3AAAAAAAAAA==",
+              "ViewState": "AgIAADMBAAAAAAAAAAAAADUBAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-11-22T10:30:59.138Z",
-              "EditorCaption": "",
-              "OwnerCaption": "%3"
+              "EditorCaption": ""
             }
           ]
         }

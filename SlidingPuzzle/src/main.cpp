@@ -278,6 +278,11 @@ void SlidingPuzzle::LoadImages()
 {
     LoadPuzzleImage("res/puzzle.png");
 }
+void SlidingPuzzle::LoadPuzzleImage(const char* name)
+    {
+        Texture2D tex = LoadTexture(name);
+        textures.push_back(tex);
+    }
 void SlidingPuzzle::GetTileImageSource(int value, Rectangle& source)
 {
     int i, j;
@@ -300,6 +305,18 @@ void SlidingPuzzle::UpdateAnimation()
     int y = (blank_j * (1 - t) + moving_j * t) * tile_height;
     RenderTile(x, y, moving_tile);
 }
+void SlidingPuzzle::EndAnimation()
+{
+    int idx = index(moving_i, moving_j);
+    grid[idx] = moving_tile;
+    is_animating = false;
+    if (!mouse_press_queue.empty())
+    {
+        Vector2 mouse = mouse_press_queue.front();
+        mouse_press_queue.pop_front();
+        HandleMousePress(mouse.x, mouse.y);
+    }
+}
 void SlidingPuzzle::CheckGameState()//checks each tile if it is in correct place if it is then ends the game other wise do not end.
 {
     int count = 0;
@@ -317,8 +334,6 @@ void SlidingPuzzle::CheckGameState()//checks each tile if it is in correct place
     {
         EndGame();
     }
-
-
 }
 void SlidingPuzzle::move_tile(int i, int j, bool animate)
 {
