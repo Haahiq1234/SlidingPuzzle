@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\HP\\Downloads\\FAST everything\\Assignment programs\\SlidingPuzzle\\",
+  "WorkspaceRootPath": "E:\\FAST\\sem_1\\PF\\SlidingPuzzle\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{75EB8B67-05C0-40EA-8595-0FC020BA24C0}|SlidingPuzzle\\SlidingPuzzle.vcxproj|C:\\Users\\HP\\Downloads\\FAST everything\\Assignment programs\\SlidingPuzzle\\SlidingPuzzle\\src\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{75EB8B67-05C0-40EA-8595-0FC020BA24C0}|SlidingPuzzle\\SlidingPuzzle.vcxproj|E:\\FAST\\sem_1\\PF\\SlidingPuzzle\\SlidingPuzzle\\src\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{75EB8B67-05C0-40EA-8595-0FC020BA24C0}|SlidingPuzzle\\SlidingPuzzle.vcxproj|solutionrelative:SlidingPuzzle\\src\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
@@ -14,17 +14,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "main.cpp",
-              "DocumentMoniker": "C:\\Users\\HP\\Downloads\\FAST everything\\Assignment programs\\SlidingPuzzle\\SlidingPuzzle\\src\\main.cpp",
+              "DocumentMoniker": "E:\\FAST\\sem_1\\PF\\SlidingPuzzle\\SlidingPuzzle\\src\\main.cpp",
               "RelativeDocumentMoniker": "SlidingPuzzle\\src\\main.cpp",
-              "ToolTip": "C:\\Users\\HP\\Downloads\\FAST everything\\Assignment programs\\SlidingPuzzle\\SlidingPuzzle\\src\\main.cpp",
-              "RelativeToolTip": "SlidingPuzzle\\src\\main.cpp",
-              "ViewState": "AgIAADMBAAAAAAAAAAAAADUBAAAoAAAAAAAAAA==",
+              "ToolTip": "E:\\FAST\\sem_1\\PF\\SlidingPuzzle\\SlidingPuzzle\\src\\main.cpp*",
+              "RelativeToolTip": "SlidingPuzzle\\src\\main.cpp*",
+              "ViewState": "AgIAAHIBAAAAAAAAAAAqwIYBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-11-22T10:30:59.138Z",
               "EditorCaption": ""

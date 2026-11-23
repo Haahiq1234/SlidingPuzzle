@@ -374,3 +374,18 @@ bool IsButtonPressed(int x, int y, int w, int h, Color reg_col, Color hovered_co
         DrawRectangle(x, y, w, h, reg_col);
     return is_pressed;
 }
+void SlidingPuzzle::RenderImagedTile(int x, int y, int value)
+{
+    Rectangle src;
+    GetTileImageSource(value, src);
+    DrawTexturePro(textures[current_tex - 1], src, { (float)x, (float)y, tile_width, tile_height }, { 0, 0 }, 0, WHITE);
+}
+void SlidingPuzzle::Animate(int i, int j, int tile)
+{
+    moving_i = i;
+    moving_j = j;
+    anim_start_time = GetTime();
+    is_animating = true;
+    moving_tile = tile;
+    grid[index(i, j)] = 0;
+}
