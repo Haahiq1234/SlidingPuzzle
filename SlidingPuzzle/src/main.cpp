@@ -3,15 +3,38 @@
 #include <vector>
 #include <deque>
 #include <iostream>
+#include <string>
+#include <fstream>
 
 using namespace std;
+
+#define MIN_N 3
+#define MAX_N 6
+
+#define GAME_STATE 0
+#define MENU_STATE 1
+#define SHUFFLING_STATE 2
+
+#define IS_SHUFFLE_SLIDING true
+#define SHUFFLE_SLIDE_DURATION 0.01
+#define SLIDE_DURATION 0.1
+
+#define BG_COL CLITERAL (Color) {100, 100, 100, 255}
+#define CORRECT_COL CLITERAL (Color) {0, 230, 0, 255}
+#define INCORRECT_COL CLITERAL (Color) {100, 230, 230, 255}
+
+#define BUTTON_COL CLITERAL (Color) {150, 150, 150, 255}
+#define HOV_BUTTON_COL CLITERAL (Color) {130, 130, 130, 255}
+#define CLICKED_BUTTON_COL CLITERAL (Color) {120, 120, 120, 255}
 
 // tiles and cells mean the same thing
 // screen space coordinates -> The coordinated on the screen (x, y)
 // grid coordinates -> The coordinated on the grid (i, j)
 
 
-bool IsButtonPressed(int x, int y, int w, int h, Color reg_col, Color hovered_col, Color clicked_col, int mx, int my);
+bool IsButtonPressed(int x, int y, int w, int h, const char *str, int font, Color reg_col, Color hovered_col, Color clicked_col, int mx, int my);
+string FormatTime(int total_seconds);
+
 
 class SlidingPuzzle {
 public:
@@ -22,8 +45,10 @@ public:
     void Destroy(); // H
 
 private:
-    int window_width = -1, window_height = -1;
-    int width = 4, height = 4;
+    int game_mode = MENU_STATE;
+    int panel_width = 600, panel_height = 600;
+    int ox = -1, oy = -1;
+    int width = 3, height = 3;
     int total_tiles = width * height;
     int blank_i = width - 1, blank_j = height - 1; // The position of the blank tile
     float tile_width = -1, tile_height = -1; // the width and height of a single tile
@@ -32,6 +57,7 @@ private:
     bool is_running = false;
 
     void BeginGame();
+    void SetGameRunning();
     void ShuffleTiles(); // H
     void HandleInput(); // H
 
@@ -45,9 +71,6 @@ private:
 
     void screen_space_to_grid(int x, int y, int& i, int& j); //A: is obvious by the name (just divides x and y by the tile_width and tile_height)
     void grid_to_screen_space(int i, int j, int& x, int& y); //B: opposite of above function
-    void get_mouse_pos(int& i, int& j); //A: Gets the position of the mouse using the raylib function 
-    //  GetMousePosition, then converts it into the grid coordinates (hint: reverse of the method we used to convert grid to screen space coordinates)
-    bool is_valid_pos(int i, int j); // B: Just checks whether the (i, j) are within bounds
     bool is_valid_move(int i, int j); //B: First checks if the new position is in bounds then checks if it is adjacent to the blank spot
     void pos(int index, int& i, int& j); //A: converts the grid index to the grid (i, j)
     int index(int i, int j); // B: Converts the grid (i, j) to the grid index
@@ -67,10 +90,22 @@ private:
     bool is_animating = false;
     int moving_i = -1, moving_j = -1, moving_tile = -1;
     float anim_start_time = -1, anim_duration = 0.1; // In seconds
-    deque<Vector2> mouse_press_queue;
+    deque<Vector2> move_queue;
     void Animate(int i, int j, int tile); // B: Begins the animation
     void UpdateAnimation();
     void EndAnimation(); // A: Ends the animation cycle
+
+    //TIMER SECTION
+    bool is_finished = false;
+    double start_time = 0, end_time = 0;
+    void UpdateAndRenderTimer();
+
+    // SCORES SECTION
+    vector<int> scores = { -1, 100, -1, -1 };
+    void UpdateScore(int n, int secs);
+    void LoadScores();
+    void RenderScores();
+    void SaveScores();
 };
 
 
@@ -84,7 +119,7 @@ void DrawCenteredText(const char* cstr, int x, int y, int font_size, Color col) 
 int main(void)
 {
     srand(time(0));
-    int window_width = 800, window_height = 800;
+    int window_width = 1200, window_height = 800;
     InitWindow(window_width, window_height, "Sliding Puzzle");
 
     SlidingPuzzle game;
@@ -94,7 +129,7 @@ int main(void)
     while (!WindowShouldClose())
     {
         BeginDrawing();
-        ClearBackground(RAYWHITE);
+        ClearBackground(BG_COL);
         game.Update();
         game.Render();
         EndDrawing();
@@ -108,29 +143,37 @@ int main(void)
 
 void SlidingPuzzle::Init(int w, int h)
 {
-    window_width = w;
-    window_height = h;
+    ox = (w - panel_width) / 2;
+    oy = (h - panel_height) / 2;
     grid = new int[width * height];
-    tile_width = (float)window_width / width;
-    tile_height = (float)window_height / height;
+    tile_width = (float)panel_width / width;
+    tile_height = (float)panel_height / height;
     LoadImages();
+    LoadScores();
+    for (int i = 0; i < width * height; i++) {
+        grid[i] = i + 1;
+    }
 
-    BeginGame();
+    //BeginGame();
 }
 
 void SlidingPuzzle::Update()
 {
-    if (!is_running) return;
-
-    HandleInput();
+    if (game_mode == MENU_STATE || !is_running) return;
     CheckGameState();
-
-    if (is_animating)
-        UpdateAnimation();
 }
 
 void SlidingPuzzle::Render()
 {
+    DrawRectangle(ox-padding, oy-padding, panel_width+padding * 2, panel_height + padding * 2, GRAY);
+    HandleInput();
+    if (is_animating) {
+        UpdateAnimation();
+        if (!is_animating && game_mode == SHUFFLING_STATE) {
+            SetGameRunning();
+            anim_duration = SLIDE_DURATION;
+        }
+    }
     for (int i = 0; i < width; i++) {
         for (int j = 0; j < height; j++) {
             int idx = index(i, j);
@@ -141,9 +184,10 @@ void SlidingPuzzle::Render()
             RenderTile(x, y, val, is_in_correct_place(i, j));
         };
     }
-    if (!is_running)
-        DrawCenteredText("PUZZLE FINISHED!", window_width / 2, window_height / 2, 60, BLACK);
-
+    if (!is_running && game_mode == GAME_STATE)
+        DrawCenteredText("PUZZLE FINISHED!", ox + panel_width / 2, oy + panel_height / 2, 60, BLACK);
+    UpdateAndRenderTimer();
+    RenderScores();
 }
 
 void SlidingPuzzle::Destroy()
@@ -153,18 +197,29 @@ void SlidingPuzzle::Destroy()
 
 void SlidingPuzzle::BeginGame()
 {
+    is_finished = false;
     for (int i = 0; i < width * height; i++) {
         grid[i] = i + 1;
     }
     grid[blank_i + blank_j * width] = 0;
     ShuffleTiles();
-    is_running = true;
+    if (IS_SHUFFLE_SLIDING)
+        game_mode = SHUFFLING_STATE;
+    else SetGameRunning();
+}
+
+void SlidingPuzzle::SetGameRunning()
+{
+        game_mode = GAME_STATE;
+        is_running = true;
+        start_time = GetTime();
 }
 
 void SlidingPuzzle::ShuffleTiles()
 {
     int num_shuffles = (width * height) * 10;
     int curr_i = blank_i, curr_j = blank_j, prev_i = blank_i, prev_j = blank_j;
+    if (IS_SHUFFLE_SLIDING) anim_duration = SHUFFLE_SLIDE_DURATION;
     while (--num_shuffles >= 0) {
         vector<Vector2> neighbours;
         if (curr_i > 0 && (curr_i - 1) != prev_i)
@@ -183,7 +238,7 @@ void SlidingPuzzle::ShuffleTiles()
         curr_i = next.x;
         curr_j = next.y;
 
-        move_tile(next.x, next.y);
+        move_tile(next.x, next.y, IS_SHUFFLE_SLIDING);
     }
 }
 
@@ -194,14 +249,12 @@ void SlidingPuzzle::HandleInput()
     if (IsKeyPressed(KEY_D) && current_tex < (textures.size()))
         current_tex++;
     Vector2 mouse = GetMousePosition();
-    if (!is_animating && IsButtonPressed(50, 50, 100, 100, LIGHTGRAY, GRAY, DARKGRAY, mouse.x, mouse.y)) {
-
-    }
-    else if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
-        if (!is_animating)
-            HandleMousePress(mouse.x, mouse.y);
-        else
-            mouse_press_queue.push_back(mouse);
+    if (game_mode== MENU_STATE) {
+        if (IsButtonPressed(50, 50, 100, 100, "START", 20, BUTTON_COL, HOV_BUTTON_COL, CLICKED_BUTTON_COL, mouse.x, mouse.y)) {
+            BeginGame();
+        }
+    } else if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+        HandleMousePress(mouse.x, mouse.y);
     }
 }
 
@@ -216,12 +269,12 @@ void SlidingPuzzle::RenderTile(int x, int y, int value, bool is_correct)
 void SlidingPuzzle::RenderNumberedTile(int x, int y, int value, bool is_correct)
 {
     if (is_correct)
-        DrawRectangle(x + padding, y + padding, tile_width - padding * 2, tile_height - padding * 2, GREEN);
+        DrawRectangle(ox + x + padding, oy + y + padding, tile_width - padding * 2, tile_height - padding * 2, CORRECT_COL);
     else
-        DrawRectangle(x + padding, y + padding, tile_width - padding * 2, tile_height - padding * 2, BLUE);
+        DrawRectangle(ox + x + padding, oy + y + padding, tile_width - padding * 2, tile_height - padding * 2, INCORRECT_COL);
     //DrawCenteredText(TextFormat("(%i, %i) -> %i + %i * %i -> %i", i, j, i, j, width, index), x + cell_width / 2, y + cell_height / 2, 20, BLACK);
     //DrawCenteredText(TextFormat("%i -> (%i %% %i -> %i, %i / %i -> %i)", index, index, width, i, index, width, j), x + cell_width / 2, y + cell_height / 2, 20, BLACK);
-    DrawCenteredText(TextFormat("%i", value), x + tile_width / 2, y + tile_height / 2, 40, BLACK);
+    DrawCenteredText(TextFormat("%i", value),ox +  x + tile_width / 2, oy + y + tile_height / 2, 40, BLACK);
 }
 
 
@@ -255,8 +308,8 @@ int SlidingPuzzle::index(int i, int j)
 }
 void SlidingPuzzle::screen_space_to_grid(int x, int y, int& i, int& j)
 {
-    i = x / tile_width;
-    j = y / tile_height;
+    i = (x - ox) / tile_width;
+    j = (y - oy) / tile_height;
 }
 
 
@@ -277,12 +330,13 @@ bool SlidingPuzzle::is_in_correct_place(int i, int j)
 void SlidingPuzzle::LoadImages()
 {
     LoadPuzzleImage("res/puzzle.png");
+    LoadPuzzleImage("res/flower.png");
 }
 void SlidingPuzzle::LoadPuzzleImage(const char* name)
-    {
-        Texture2D tex = LoadTexture(name);
-        textures.push_back(tex);
-    }
+{
+    Texture2D tex = LoadTexture(name);
+    textures.push_back(tex);
+}
 void SlidingPuzzle::GetTileImageSource(int value, Rectangle& source)
 {
     int i, j;
@@ -310,11 +364,72 @@ void SlidingPuzzle::EndAnimation()
     int idx = index(moving_i, moving_j);
     grid[idx] = moving_tile;
     is_animating = false;
-    if (!mouse_press_queue.empty())
+    if (!move_queue.empty())
     {
-        Vector2 mouse = mouse_press_queue.front();
-        mouse_press_queue.pop_front();
-        HandleMousePress(mouse.x, mouse.y);
+        Vector2 pos = move_queue.front();
+        move_queue.pop_front();
+        move_tile(pos.x, pos.y, true);
+    }
+}
+void SlidingPuzzle::UpdateAndRenderTimer()
+{
+    float timer_width = 130;
+    float timer_height = 40;
+    float timer_x = ox + panel_width;
+    float timer_y = oy  - timer_height * 1.5;
+    DrawRectangle(timer_x, timer_y, timer_width, timer_height, GRAY);
+    double current_time = (is_finished) ? end_time : GetTime();
+    int total_seconds = (!is_finished && !is_running) ? 0 : floor(current_time - start_time);
+    DrawCenteredText(FormatTime(total_seconds).c_str(), timer_x + timer_width / 2, timer_y + timer_height / 2, 30, BLACK);
+}
+void SlidingPuzzle::UpdateScore(int n, int secs)
+{
+    int i = n - MIN_N;
+    if (scores[i] == -1 || secs < scores[i]) {
+        scores[i] = secs;
+        SaveScores();
+    }
+}
+void SlidingPuzzle::LoadScores()
+{
+    ifstream file("scores.txt");
+    scores = {};
+    if (!file.is_open()) {
+        for (int i = MIN_N; i <= MAX_N; i++) 
+            scores.push_back(-1);
+        SaveScores();
+    }
+    else {
+        for (int i = MIN_N; i <= MAX_N; i++) {
+            int score;
+            file >> score;
+            scores.push_back(score);
+        }
+        file.close();
+    }
+}
+void SlidingPuzzle::RenderScores()
+{
+    int font_size = 26;
+    int score_w = 200;
+    int score_h = 40;
+    int score_x = ox + panel_width + 20;
+    int score_y = oy + 40;
+    DrawRectangle(score_x, score_y, score_w, score_h, GRAY);
+    DrawCenteredText("LOWEST", score_x+score_w/2, score_y+score_h/2, font_size, BLACK);
+    for (int i = 0; i < scores.size(); i++) {
+        DrawRectangle(score_x, score_y + (i+1) * (score_h + 10), score_w, score_h, GRAY);
+        string str = to_string(i + MIN_N) + " by " + to_string(i + MIN_N) + " :: ";
+        if (scores[i] == -1) str += "NONE";
+        else str += FormatTime(scores[i]);
+        DrawText(str.c_str(), score_x+5, score_y + (i+1) * (score_h + 10) +score_h * 0.5 - font_size/2, font_size, BLACK);
+    }
+}
+void SlidingPuzzle::SaveScores()
+{
+    ofstream file("scores.txt");
+    for (int i = 0; i < scores.size(); i++) {
+        file << scores[i] << '\n';
     }
 }
 void SlidingPuzzle::CheckGameState()//checks each tile if it is in correct place if it is then ends the game other wise do not end.
@@ -337,6 +452,10 @@ void SlidingPuzzle::CheckGameState()//checks each tile if it is in correct place
 }
 void SlidingPuzzle::move_tile(int i, int j, bool animate)
 {
+    if (is_animating && animate) {
+        move_queue.push_back({ (float)i, (float)j });
+        return;
+    }
     int position1, temp, position2;
     position1 = index(i, j);
     position2 = index(blank_i, blank_j);
@@ -353,37 +472,57 @@ void SlidingPuzzle::HandleMousePress(int x, int y)
 {
     int i, j;
     screen_space_to_grid(x, y, i, j);
-    if (is_valid_move(i, j))
+    if (is_valid_move(i, j)) {
         move_tile(i, j, true);
+    }
 }
 void SlidingPuzzle::EndGame()
 {
     int x = index(blank_i, blank_j);
     grid[x] = x + 1;
     is_running = false;
+    is_finished = true;
+    end_time = GetTime();
+    game_mode = MENU_STATE;
+    UpdateScore(width, floor(end_time-start_time));
 }
-bool IsButtonPressed(int x, int y, int w, int h, Color reg_col, Color hovered_col, Color clicked_col, int mx, int my)
+bool IsButtonPressed(int x, int y, int w, int h, const char* str, int font , Color reg_col, Color hovered_col, Color clicked_col, int mx, int my)
 {
     bool is_hovered = (mx >= x && my >= y && mx <= (x + w) && my <= (y + h));
     bool is_pressed = is_hovered && IsMouseButtonPressed(MOUSE_BUTTON_LEFT);
-    if (is_pressed)
+    if (is_hovered && IsMouseButtonDown(MOUSE_BUTTON_LEFT))
         DrawRectangle(x, y, w, h, clicked_col);
     else if (is_hovered)
         DrawRectangle(x, y, w, h, hovered_col);
     else
         DrawRectangle(x, y, w, h, reg_col);
+    DrawCenteredText(str, x+w/2, y+h/2, font, BLACK);
     return is_pressed;
+}
+string FormatTime(int total_seconds)
+{
+    int num_sec = total_seconds % 60;
+    int num_min = total_seconds / 60;
+    if (num_min >= 10) {
+        num_min = 9;
+        num_sec = 59;
+    }
+    string timestr = to_string(num_min) + ":";
+    if (num_sec < 10) timestr += '0';
+    timestr += to_string(num_sec);
+    return timestr;
 }
 void SlidingPuzzle::RenderImagedTile(int x, int y, int value)
 {
     Rectangle src;
     GetTileImageSource(value, src);
-    DrawTexturePro(textures[current_tex - 1], src, { (float)x, (float)y, tile_width, tile_height }, { 0, 0 }, 0, WHITE);
+    DrawTexturePro(textures[current_tex - 1], src, { (float)(x+ox), (float)(y+oy), tile_width, tile_height}, {0, 0}, 0, WHITE);
 }
 void SlidingPuzzle::Animate(int i, int j, int tile)
 {
     moving_i = i;
     moving_j = j;
+
     anim_start_time = GetTime();
     is_animating = true;
     moving_tile = tile;
