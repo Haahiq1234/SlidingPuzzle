@@ -1,41 +1,4 @@
-﻿  main.cpp
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(92,49): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(121,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(174,29): warning C4305: '=': truncation from 'double' to 'float'
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(222,45): warning C4305: '=': truncation from 'double' to 'float'
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(238,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(239,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(241,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(241,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(253,122): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(253,113): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(257,40): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(257,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(272,97): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(272,70): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(274,97): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(274,70): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(277,79): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(277,54): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(283,11): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(284,11): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(311,18): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(312,18): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(352,24): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(358,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(359,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(371,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(371,22): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(378,19): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(379,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(380,50): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(380,37): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(380,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(380,19): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(382,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(383,92): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(383,65): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(425,90): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(487,29): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\src\main.cpp(526,30): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+﻿  solver.cpp
+D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\solver.cpp(107,20): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\SlidingPuzzle\solver.cpp(108,20): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   SlidingPuzzle.vcxproj -> D:\FAST\semester_1\Programming_Fundamentals\SemProject\SlidingPuzzle\x64\Debug\SlidingPuzzle.exe
