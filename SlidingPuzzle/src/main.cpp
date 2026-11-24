@@ -854,7 +854,8 @@ void SlidingPuzzle::RenderEndMenu()
     int b_y = oy + panel_height - b_height;
 
     if (IsButtonPressed(ox - LABEL_WIDTH - 20, b_y, b_width, b_height, "TRY AGAIN", 32, BUTTON_COL, HOV_BUTTON_COL, CLICKED_BUTTON_COL)) {
-        BeginGame();
+        EndGame();
+        game_mode = MENU_STATE;
     }
     else if (IsButtonPressed(ox + panel_width + 20, b_y, b_width, b_height, "EXIT", 35, BUTTON_COL, HOV_BUTTON_COL, CLICKED_BUTTON_COL)) {
         is_exited = true;
@@ -925,6 +926,8 @@ void SlidingPuzzle::EndGame()
     game_mode = ENDED_STATE;
     if (!autosolved)
         UpdateScore(width, floor(end_time - start_time));
+    move_queue = {};
+    is_animating = false;
 }
 bool IsButtonPressed(float x, float y, float w, float h, const char* str, int font, Color reg_col, Color hovered_col, Color clicked_col)
 {
