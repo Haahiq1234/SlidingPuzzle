@@ -11,7 +11,6 @@ The Sliding Puzzle game is a basic one, in which you move around tiles on a grid
 - [Install](#install)
 - [Usage](#usage)
 - [Maintainers](#maintainers)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Purpose
